@@ -86,7 +86,7 @@ const CatalogCard: React.FC<Car> = ({
             {actualPrice}
           </p>
         </div>
-        <Button text={"Rent Now"} url={"http://localhost:3000/detail"}/>
+        <Button text={"Rent Now"} url={"/detail"}/>
       </div>
     </div>
   );

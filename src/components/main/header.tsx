@@ -39,7 +39,7 @@ const Header = () => {
             <IoNotifications />
           </div>
           <div>
-            <Link href={"http://localhost:3000/dashboard"}>
+            <Link href={"/dashboard"}>
               <Image
                 src={"/header/01.png"}
                 alt={"login image"}
@@ -65,7 +65,7 @@ const Header = () => {
           {/* Right */}
           <div className="flex gap-5">
             <div>
-              <Link href={"http://localhost:3000/dashboard"}>
+              <Link href={"/dashboard"}>
                 <Image
                   src={"/header/01.png"}
                   alt={"login image"}
