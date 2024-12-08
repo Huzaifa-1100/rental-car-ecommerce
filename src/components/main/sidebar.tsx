@@ -1,6 +1,4 @@
 import React, { FC } from "react";
-import SidebarContent from "../sub/sidebarContent";
-import { typeSidebar } from "../../../utils/data";
 
 interface ISidebar {
   heading: string;

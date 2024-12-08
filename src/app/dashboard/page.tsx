@@ -2,11 +2,11 @@ import Sidebar from "@/components/main/sidebar";
 import DashSidebar from "@/components/sub/dashSidebar";
 import React from "react";
 import { mainMenu, preferenceData } from "../../../utils/dashData";
-import { TbArrowsDownUp, TbLogout2 } from "react-icons/tb";
 import Image from "next/image";
 import { dashboardCars, pickupData } from "../../../utils/data";
 import PickUpCards from "@/components/sub/pickUpCards";
 import DashbCard from "@/components/sub/dashbCard";
+import { TbLogout2 } from "react-icons/tb";
 
 const Page = () => {
   return (
