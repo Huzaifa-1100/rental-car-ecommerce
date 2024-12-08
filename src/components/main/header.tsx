@@ -39,12 +39,15 @@ const Header = () => {
             <IoNotifications />
           </div>
           <div>
-            <Image
-              src={"/header/01.png"}
-              alt={"login image"}
-              height={44}
-              width={44}
-            />
+            <Link href={"http://localhost:3000/dashboard"}>
+              <Image
+                src={"/header/01.png"}
+                alt={"login image"}
+                height={44}
+                width={44}
+                className="cursor-pointer"
+              />
+            </Link>
           </div>
         </div>
       </div>
@@ -62,12 +65,14 @@ const Header = () => {
           {/* Right */}
           <div className="flex gap-5">
             <div>
-              <Image
-                src={"/header/01.png"}
-                alt={"login image"}
-                height={44}
-                width={44}
-              />
+              <Link href={"http://localhost:3000/dashboard"}>
+                <Image
+                  src={"/header/01.png"}
+                  alt={"login image"}
+                  height={44}
+                  width={44}
+                />
+              </Link>
             </div>
           </div>
         </div>
