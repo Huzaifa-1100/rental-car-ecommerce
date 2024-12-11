@@ -4,12 +4,20 @@
 
 /* wrapper to set max with of the whole web */
 .wrapper{
-  @apply max-w-[1440px] mx-auto px-10;
+  @apply max-w-[1440px] mx-auto px-4 lg:px-10;
 }
 
+.container {
+  @apply max-w-4xl bg-primary0 p-6 rounded-[10px] space-y-4 my-5;
+}
+
+.nestedContainer {
+  @apply max-w-4xl bg-bg p-4 rounded-[10px]  my-5
+}
 
 /* Import Jakarta fonts */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap');
+
 
 
 .jakarta-logo {
@@ -106,6 +114,16 @@
   line-height: 15px;
   font-size: 12px;
 }
+
+/* Payment section */
+.jakarta-text {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 48px;
+}
+
 
 @layer base {
   :root {

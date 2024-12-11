@@ -103,7 +103,7 @@ const Page = () => {
             </div>
             <div className="my-16 flex justify-between items-center px-4 ">
               <div></div>
-              <Button text={"Show more car"} url={"#"} />
+              <Button text={"Show more car"} url={"/payment"} />
               <p className="text-secondary300 jakarta-small">120 Car</p>
             </div>
           </div>
