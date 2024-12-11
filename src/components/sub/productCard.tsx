@@ -5,6 +5,7 @@ import { IoHeartOutline, IoHeartSharp, IoPeopleSharp } from "react-icons/io5";
 import { BsFuelPump } from "react-icons/bs";
 import { GiCartwheel } from "react-icons/gi";
 import Button from "./button";
+import Link from "next/link";
 
 // types/Car.ts
 export interface Car {
@@ -49,13 +50,15 @@ const CatalogCard: React.FC<Car> = ({
 
       {/* Car Image */}
       <div className="flex justify-center mt-8 py-10">
-        <Image
-          src={carImage}
-          alt={carName}
-          width={232}
-          height={72}
-          className="object-contain"
-        />
+        <Link href={"/detail"}>
+          <Image
+            src={carImage}
+            alt={carName}
+            width={232}
+            height={72}
+            className="object-contain"
+          />
+        </Link>
       </div>
 
       {/* Specifications */}
@@ -86,7 +89,7 @@ const CatalogCard: React.FC<Car> = ({
             {actualPrice}
           </p>
         </div>
-        <Button text={"Rent Now"} url={"/detail"}/>
+        <Button text={"Rent Now"} url={"/payment"} />
       </div>
     </div>
   );

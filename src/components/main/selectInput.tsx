@@ -24,18 +24,19 @@ const SelectInput = ({
   };
 
   useEffect(() => {
-    const handleOutsideClick = (event:any) => {
-      if (!event.target.closest('.select-input')) {
+    const handleOutsideClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest(".select-input")) {
         setIsOpen(false);
       }
     };
 
     if (isOpen) {
-      document.addEventListener('click', handleOutsideClick);
+      document.addEventListener("click", handleOutsideClick);
     }
 
     return () => {
-      document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener("click", handleOutsideClick);
     };
   }, [isOpen]);
 
