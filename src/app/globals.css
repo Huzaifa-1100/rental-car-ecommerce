@@ -124,6 +124,16 @@
   line-height: 48px;
 }
 
+/* jakarta custom */
+.jakarta-custom {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: 600;
+  font-style: normal;
+  line-height: 30px;
+  font-size: 20px; */
+}
+
 
 @layer base {
   :root {

@@ -1,14 +1,14 @@
 import React from "react";
 import HeroAdds from "../sub/heroAdds";
-import { catalogData, pickupData, recomendedCars } from "../../../utils/data";
+import { pickupData } from "../../../utils/data";
 import PickUpCards from "../sub/pickUpCards";
 import { TbArrowsDownUp } from "react-icons/tb";
-import CatalogCard from "../sub/productCard";
-import Button from "../sub/button";
+import RadioButton from "./radioButton";
 
-const Hero = () => {
+const Hero =  () => {
+
   return (
-    <main className="wrapper bg-bg py-9">
+    <main className=" bg-bg py-9">
       <div className="">
         {/* top images */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
@@ -45,10 +45,7 @@ const Hero = () => {
             {/* Pickup */}
             <div className="flex items-center gap-5">
               {/* Dot */}
-              <div className="bg-primary500 h-4 w-4 rounded-full bg-opacity-40 p-1 ">
-                <div className="bg-primary500 h-2 w-2 rounded-full "></div>
-              </div>
-              <h2>Pick - Up</h2>
+              <RadioButton option="Pick Up" />
             </div>
 
             {/* Location */}
@@ -65,13 +62,8 @@ const Hero = () => {
 
           {/* Drop off */}
           <div className=" max-w-[582px] w-full p-6 bg-white  ">
-            {/* Pickup */}
             <div className="flex items-center gap-5">
-              {/* Dot */}
-              <div className="bg-primary500 h-4 w-4 rounded-full bg-opacity-40 p-1 ">
-                <div className="bg-primary500 h-2 w-2 rounded-full "></div>
-              </div>
-              <h2>Drop - Off</h2>
+              <RadioButton option="Drop - Off" />
             </div>
 
             {/* Location */}
@@ -83,36 +75,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Card Section */}
 
-        {/* Popular Car */}
-        <div className=" mx-auto">
-          <h1 className="jakarta-addButton text-secondary300 text-start my-10 mx-6">
-            Popular Car
-          </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 place-self-center ">
-            {catalogData.map((car) => (
-              <CatalogCard key={car.id} {...car} />
-            ))}
-          </div>
-        </div>
-
-        {/* Recomendation Car */}
-        <div className=" mx-auto">
-          <h1 className="jakarta-addButton text-secondary300 text-start my-10 mx-6">
-            Recomendation Car
-          </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 w-full lg:grid-cols-4 gap-4 place-self-center ">
-            {recomendedCars.map((car) => (
-              <CatalogCard key={car.id} {...car} />
-            ))}
-          </div>
-          <div className="my-16 flex justify-between items-center px-4 ">
-            <div></div>
-            <Button text={"Show more car"} url={"/category"} />
-            <p className="text-secondary300 jakarta-small">120 Car</p>
-          </div>
-        </div>
       </div>
     </main>
   );

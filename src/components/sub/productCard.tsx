@@ -5,8 +5,6 @@ import { IoHeartOutline, IoHeartSharp, IoPeopleSharp } from "react-icons/io5";
 import { BsFuelPump } from "react-icons/bs";
 import { GiCartwheel } from "react-icons/gi";
 import Button from "./button";
-import Link from "next/link";
-
 // types/Car.ts
 export interface Car {
   id: number;
@@ -14,8 +12,8 @@ export interface Car {
   category: string;
   price: number;
   actualPrice?: string;
-  capacity: string;
-  fuel: string;
+  capacity: number;
+  fuel: number;
   transmission: string;
   carImage: string;
   isLike: boolean;
@@ -33,7 +31,7 @@ const CatalogCard: React.FC<Car> = ({
   isLike,
 }) => {
   return (
-    <div className="flex flex-col bg-white lg:max-w-[304px] p-6 rounded-lg shadow-md">
+    <div className="flex flex-col bg-white lg:max-w-[304px] p-6 rounded-lg  shadow-md">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -50,22 +48,20 @@ const CatalogCard: React.FC<Car> = ({
 
       {/* Car Image */}
       <div className="flex justify-center mt-8 py-10">
-        <Link href={"/detail"}>
-          <Image
-            src={carImage}
-            alt={carName}
-            width={232}
-            height={72}
-            className="object-contain"
-          />
-        </Link>
+        <Image
+          src={carImage}
+          alt={carName}
+          width={232}
+          height={72}
+          className="object-contain"
+        />
       </div>
 
       {/* Specifications */}
       <div className="flex  mt-8 gap-4 jakarta-small text-secondary300">
         <div className="flex items-center gap-2">
           <BsFuelPump />
-          <p>{fuel}</p>
+          <p>{`${fuel} L`}</p>
         </div>
         <div className="flex items-center gap-2">
           <GiCartwheel />
@@ -75,7 +71,7 @@ const CatalogCard: React.FC<Car> = ({
         <div className="flex items-center gap-2">
           <IoPeopleSharp />
 
-          <p>{capacity}</p>
+          <p>{`${capacity} Persons`}</p>
         </div>
       </div>
 

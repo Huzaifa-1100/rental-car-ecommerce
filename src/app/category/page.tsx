@@ -2,17 +2,19 @@ import Sidebar from "@/components/main/sidebar";
 import React from "react";
 import {
   capacitySidebar,
-  categoryCars,
   pickupData,
   typeSidebar,
 } from "../../../utils/data";
-import SidebarContent from "@/components/sub/sidebarContent";
 import PickUpCards from "@/components/sub/pickUpCards";
 import { TbArrowsDownUp } from "react-icons/tb";
 import CatalogCard from "@/components/sub/productCard";
 import Button from "@/components/sub/button";
+import { CheckboxReactHookFormMultiple } from "@/components/sub/sideBar";
+import { getCars } from "../../../utils/carsData";
+import { urlFor } from "@/sanity/lib/image";
 
-const Page = () => {
+const Page = async () => {
+  const CarCategory = await getCars(["Sport", "Sedan", "Hatchback", "SUV"]);
   return (
     <main className="wrapper flex justify-center">
       {/* Left sidebar */}
@@ -21,10 +23,9 @@ const Page = () => {
         <div className="mt-10">
           <Sidebar heading={"T Y P E"} />
           <div className="space-y-4 my-5">
-            {typeSidebar.map((sidebar, index) => (
-              <SidebarContent
-                key={index}
-                iSicon={sidebar.isIcon}
+            {typeSidebar.map((sidebar) => (
+              <CheckboxReactHookFormMultiple
+                key={sidebar.id}
                 category={sidebar.category}
                 qty={sidebar.qty}
               />
@@ -35,10 +36,9 @@ const Page = () => {
         {/* capacity */}
         <div className="space-y-4 my-5 mt-10">
           <Sidebar heading={"C A P A C I T Y"} />
-          {capacitySidebar.map((capacity, index) => (
-            <SidebarContent
-              key={index}
-              iSicon={capacity.isIcon}
+          {capacitySidebar.map((capacity) => (
+            <CheckboxReactHookFormMultiple
+              key={capacity.id}
               category={capacity.category}
               qty={capacity.qty}
             />
@@ -97,8 +97,19 @@ const Page = () => {
           {/* categroy Car */}
           <div className=" mx-auto mt-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 w-full lg:grid-cols-3 px-5 gap-4 place-self-center ">
-              {categoryCars.map((car) => (
-                <CatalogCard key={car.id} {...car} />
+              {CarCategory.map((car) => (
+                <CatalogCard
+                key={car._id}
+                  id={0}
+                  carName={car.brand}
+                  category={car.category?.name}
+                  price={car.price}
+                  capacity={car.seatingCapacity}
+                  fuel={car.engineCapacity}
+                  transmission={car.transmission}
+                  carImage={urlFor(car.image).url()}
+                  isLike={false}
+                />
               ))}
             </div>
             <div className="my-16 flex justify-between items-center px-4 ">

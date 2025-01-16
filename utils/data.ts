@@ -187,32 +187,33 @@ export const footerData = [
 
 export const typeSidebar = [
   {
-    isIcon: true,
+    id: "sport",
     category: "Sport",
     qty: 10,
   },
+
   {
-    isIcon: true,
+    id: "suv",
     category: "SUV",
     qty: 12,
   },
   {
-    isIcon: false,
+    id: "mpv",
     category: "MPV",
     qty: 16,
   },
   {
-    isIcon: false,
+    id: "sedan",
     category: "Sedan",
     qty: 20,
   },
   {
-    isIcon: false,
+    id: "coupe",
     category: "Coupe",
     qty: 14,
   },
   {
-    isIcon: false,
+    id: "hatchback",
     category: "Hatchback",
     qty: 14,
   },
@@ -223,22 +224,22 @@ export const typeSidebar = [
 
 export const capacitySidebar = [
   {
-    isIcon: true,
+    id: 1,
     category: "2 Person",
     qty: 10,
   },
   {
-    isIcon: false,
+    id: 2,
     category: "4 Person",
     qty: 14,
   },
   {
-    isIcon: false,
+    id: 3,
     category: "6 Person",
     qty: 12,
   },
   {
-    isIcon: true,
+    id: 4,
     category: "8 or More",
     qty: 16,
   },
