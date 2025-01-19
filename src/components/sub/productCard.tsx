@@ -5,7 +5,7 @@ import { IoHeartOutline, IoHeartSharp, IoPeopleSharp } from "react-icons/io5";
 import { BsFuelPump } from "react-icons/bs";
 import { GiCartwheel } from "react-icons/gi";
 import Button from "./button";
-import { Image as SanityImage } from "sanity";
+
 // types/Car.ts
 export interface Car {
   id: number;
