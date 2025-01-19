@@ -9,4 +9,3 @@ export const client = createClient({
   apiVersion,
   useCdn: false, // Set to false if statically generating pages, using ISR or tag-based revalidation
 })
- 
