@@ -1,5 +1,5 @@
 // src/queries/carQuery.ts
-
+// 
 export const carQuery = `*[_type == "car"]{
     _id,
     name,
