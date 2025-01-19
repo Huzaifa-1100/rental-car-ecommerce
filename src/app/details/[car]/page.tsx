@@ -170,7 +170,7 @@ const page = async (params: PageParams) => {
               <div className="flex justify-between items-center h-[124px]">
                 <div>
                   <p className="jakarta-cardHeading tracking-tighter">
-                    ${filteredCar?.pricePerDay}/ <span>days</span>
+                    {filteredCar?.pricePerDay}/ <span>days</span>
                   </p>
                   <p className="line-through">${100.0}</p>
                 </div>
@@ -197,7 +197,7 @@ const page = async (params: PageParams) => {
                 <Link href={`/details/${car.slug.current}`} key={car._id}>
                 <CatalogCard
                   id={0}
-                  carName={car.brand}
+                  carName={car.name}
                   category={car.type}
                   price={car.pricePerDay}
                   capacity={car.seatingCapacity}

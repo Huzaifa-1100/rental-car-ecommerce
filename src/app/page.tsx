@@ -6,9 +6,9 @@ import { urlFor } from "@/sanity/lib/image";
 import Button from "@/components/sub/button";
 
 export default async function Home() {
-  // // fetct popular cars
-  // const PopularCars = await getCars(["Sport", "Sedan"]);
-  // // fetct recomended cars
+  // fetct popular cars
+  const PopularCars = await getCars('popular');
+  // fetct recomended cars
   const recommendedCars = await getCars('recommended');
 
   return (
@@ -23,23 +23,23 @@ export default async function Home() {
         <h1 className="jakarta-addButton text-secondary300 text-start my-10">
           Popular Car
         </h1>
-        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 place-self-center ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full place-self-center ">
           {PopularCars.map((car) => (
             <Link href={`/details/${car.slug.current}`} key={car._id}>
               <CatalogCard
                 id={0}
-                carName={car.brand}
-                category={car.category?.name}
-                price={car.price}
+                carName={car.name}
+                category={car.type}
+                price={car.pricePerDay}
                 capacity={car.seatingCapacity}
-                fuel={car.engineCapacity}
+                fuel={car.fuelCapacity}
                 transmission={car.transmission}
                 carImage={urlFor(car.image).url()}
                 isLike={false}
               />
             </Link>
           ))}
-        </div> */}
+        </div>
       </div>
 
       {/* Recomendation Car */}
