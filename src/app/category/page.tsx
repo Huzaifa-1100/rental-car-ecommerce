@@ -14,7 +14,7 @@ import { getCars } from "../../../utils/carsData";
 import { urlFor } from "@/sanity/lib/image";
 
 const Page = async () => {
-  const CarCategory = await getCars(["Sport", "Sedan", "Hatchback", "SUV"]);
+  const CarCategory = await getCars();
   return (
     <main className="wrapper flex justify-center">
       {/* Left sidebar */}
@@ -101,11 +101,11 @@ const Page = async () => {
                 <CatalogCard
                 key={car._id}
                   id={0}
-                  carName={car.brand}
-                  category={car.category?.name}
-                  price={car.price}
+                  carName={car.name}
+                  category={car.type}
+                  price={car.pricePerDay}
                   capacity={car.seatingCapacity}
-                  fuel={car.engineCapacity}
+                  fuel={car.fuelCapacity}
                   transmission={car.transmission}
                   carImage={urlFor(car.image).url()}
                   isLike={false}
