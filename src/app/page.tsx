@@ -9,7 +9,7 @@ export default async function Home() {
   // // fetct popular cars
   // const PopularCars = await getCars(["Sport", "Sedan"]);
   // // fetct recomended cars
-  const RecomendedCars = await getCars();
+  const recommendedCars = await getCars('recommended');
 
   return (
     <div className="wrapper bg-bg py-9">
@@ -48,7 +48,7 @@ export default async function Home() {
           Recomendation Car
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full  place-self-center ">
-          {RecomendedCars.map((car) => (
+          {recommendedCars.map((car) => (
             <Link href={`/details/${car.slug.current}`} key={car._id}>
               <CatalogCard
                 id={0}

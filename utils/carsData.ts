@@ -57,30 +57,30 @@ export interface Car {
   _updatedAt?: string;
 }
 
+// Define allowed tags
+export type CarTag = 'recommended' | 'popular';
 
-export const getCars = async (categories?: string[]): Promise<Car[]> => {
-  // Ensure categories is always an array or null
-  const resolvedCategories = categories?.length ? categories : null;
-
-  const res = await client.fetch(
-    `*[_type=="car" && (!defined($categories) || category->name in $categories)] {
-        _id,
-    name,
-    brand,
-    type,
-    fuelCapacity,
-    transmission,
-    seatingCapacity,
-    pricePerDay,
-    slug,
-    originalPrice,
-    tags,
-    image
-      }`,
-    { categories: resolvedCategories }, // Pass resolvedCategories
-    {
-      cache: "no-store", // Ensure fresh data is fetched
+// Function to fetch cars
+export const getCars = async (tags?: CarTag): Promise<Car[]> => {
+  const query = `
+    *[_type == "car"${tags ? ` && $tags in tags` : ''}] {
+      _id,
+      name,
+      brand,
+      type,
+      fuelCapacity,
+      transmission,
+      seatingCapacity,
+      pricePerDay,
+      slug,
+      originalPrice,
+      tags,
+      image
     }
-  );
-  return res;
+  `;
+
+  // Pass the tag only when it's defined
+  const params = tags ? { tags } : {};
+  const cars: Car[] = await client.fetch(query, params);
+  return cars;
 };
