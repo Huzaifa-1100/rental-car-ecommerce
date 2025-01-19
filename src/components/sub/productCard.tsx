@@ -5,15 +5,16 @@ import { IoHeartOutline, IoHeartSharp, IoPeopleSharp } from "react-icons/io5";
 import { BsFuelPump } from "react-icons/bs";
 import { GiCartwheel } from "react-icons/gi";
 import Button from "./button";
+import { Image as SanityImage } from "sanity";
 // types/Car.ts
 export interface Car {
   id: number;
   carName: string;
   category: string;
-  price: number;
+  price: string;
   actualPrice?: string;
-  capacity: number;
-  fuel: number;
+  capacity: string;
+  fuel: string;
   transmission: string;
   carImage: string;
   isLike: boolean;
@@ -61,7 +62,7 @@ const CatalogCard: React.FC<Car> = ({
       <div className="flex  mt-8 gap-4 jakarta-small text-secondary300">
         <div className="flex items-center gap-2">
           <BsFuelPump />
-          <p>{`${fuel} L`}</p>
+          <p>{fuel}</p>
         </div>
         <div className="flex items-center gap-2">
           <GiCartwheel />
@@ -79,7 +80,7 @@ const CatalogCard: React.FC<Car> = ({
       <div className="flex justify-between items-center mt-8">
         <div>
           <p className="text-xl font-bold text-gray-800">
-            ${price}.00 <span className="text-sm text-gray-400">/day</span>
+            {price}<span className="text-sm text-gray-400">/day</span>
           </p>
           <p className="text-secondary300 jakarta-cardSubHeading line-through">
             {actualPrice}

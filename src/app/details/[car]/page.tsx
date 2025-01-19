@@ -84,7 +84,7 @@ const page = async (params: PageParams) => {
                       ? urlFor(filteredCar.image).url()
                       : "/fallback-image.jpg"
                   }
-                  alt={filteredCar?.brand || `car image`}
+                  alt={filteredCar?.name || `car image`}
                   width={400}
                   height={200}
                 />
@@ -98,7 +98,7 @@ const page = async (params: PageParams) => {
                         ? urlFor(filteredCar.image).url()
                         : "/fallback-image.jpg"
                     }
-                    alt={filteredCar?.brand || `car image`}
+                    alt={filteredCar?.name || `car image`}
                     width={148}
                     height={124}
                   />
@@ -150,7 +150,7 @@ const page = async (params: PageParams) => {
                 <div className="grid grid-cols-4 w-full gap-2 mt-auto mb-5 jakarta-custom text-[10px] md:text-[18px]">
                   <p className=" text-secondary300 font-bold">Type Car </p>
                   <p className=" text-secondary400 font-bold">
-                    {filteredCar?.category?.name}
+                    {filteredCar?.type}
                   </p>
                   <p className=" text-secondary300 font-bold">Capacity </p>
                   <p className=" text-secondary400 font-bold">
@@ -162,7 +162,7 @@ const page = async (params: PageParams) => {
                   </p>
                   <p className=" text-secondary300 font-bold">Gasoline </p>
                   <p className=" text-secondary400 font-bold">
-                    {filteredCar?.engineCapacity}L
+                    {filteredCar?.fuelCapacity}
                   </p>
                 </div>
               </div>
@@ -170,7 +170,7 @@ const page = async (params: PageParams) => {
               <div className="flex justify-between items-center h-[124px]">
                 <div>
                   <p className="jakarta-cardHeading tracking-tighter">
-                    ${filteredCar?.price}/ <span>days</span>
+                    ${filteredCar?.pricePerDay}/ <span>days</span>
                   </p>
                   <p className="line-through">${100.0}</p>
                 </div>
@@ -198,10 +198,10 @@ const page = async (params: PageParams) => {
                 <CatalogCard
                   id={0}
                   carName={car.brand}
-                  category={car.category?.name}
-                  price={car.price}
+                  category={car.type}
+                  price={car.pricePerDay}
                   capacity={car.seatingCapacity}
-                  fuel={car.engineCapacity}
+                  fuel={car.fuelCapacity}
                   transmission={car.transmission}
                   carImage={urlFor(car.image).url()}
                   isLike={false}
