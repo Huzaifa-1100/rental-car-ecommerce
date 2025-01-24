@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import CatalogCard from "@/components/sub/productCard";
 import { urlFor } from "@/sanity/lib/image";
-import { CheckboxReactHookFormMultiple } from "../sub/sideBar";
 import Link from "next/link";
 import { useSelectedTypes } from "@/context/selectedTypesContext";
 
