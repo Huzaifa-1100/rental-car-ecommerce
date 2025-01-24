@@ -33,9 +33,11 @@ export const Cars = defineType({
 
       {
         name: 'type',
-        type: 'string',
-        title: 'Car Type',
-        description: 'Type of the car (e.g., Sport, Sedan, SUV, etc.)',
+        title: 'Car Type (',
+        type: 'reference',
+        to: [{ type: 'carType' }],
+        description: 'The category of the car (e.g., Sports, Luxury, SUV)',
+        validation: Rule => Rule.required(),
       }),
     defineField(
       {

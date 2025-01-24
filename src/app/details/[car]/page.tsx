@@ -12,6 +12,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Button from "@/components/sub/button";
 import Link from "next/link";
+import CarList from "@/components/main/carList";
 
 interface PageParams {
   params: {
@@ -38,20 +39,12 @@ const page = async (params: PageParams) => {
       <div className="basis-2/12 lg:block hidden">
         {/* type */}
         <div className="mt-10">
-          <Sidebar heading={"T Y P E"} />
-          <div className="space-y-4 my-5">
-            {typeSidebar.map((sidebar) => (
-              <CheckboxReactHookFormMultiple
-                key={sidebar.id}
-                category={sidebar.category}
-                qty={sidebar.qty}
-              />
-            ))}
+         <CheckboxReactHookFormMultiple/>
           </div>
         </div>
 
         {/* capacity */}
-        <div className="space-y-4 my-5 mt-10">
+        {/* <div className="space-y-4 my-5 mt-10">
           <Sidebar heading={"C A P A C I T Y"} />
           {capacitySidebar.map((capacity) => (
             <CheckboxReactHookFormMultiple
@@ -61,7 +54,7 @@ const page = async (params: PageParams) => {
             />
           ))}
         </div>
-      </div>
+      </div> */}
       {/* Right */}
       <div className="wrapper bg-bg py-9">
         <div className="">
@@ -150,7 +143,7 @@ const page = async (params: PageParams) => {
                 <div className="grid grid-cols-4 w-full gap-2 mt-auto mb-5 jakarta-custom text-[10px] md:text-[18px]">
                   <p className=" text-secondary300 font-bold">Type Car </p>
                   <p className=" text-secondary400 font-bold">
-                    {filteredCar?.type}
+                    {filteredCar?.type.type}
                   </p>
                   <p className=" text-secondary300 font-bold">Capacity </p>
                   <p className=" text-secondary400 font-bold">
@@ -192,8 +185,9 @@ const page = async (params: PageParams) => {
               <p className="text-primary500 ">View All</p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 place-self-center ">
-              {carsData.map((car) => (
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 place-self-center "> */}
+             <CarList/>
+              {/* {carsData.map((car) => (
                 <Link href={`/details/${car.slug.current}`} key={car._id}>
                 <CatalogCard
                   id={0}
@@ -207,11 +201,11 @@ const page = async (params: PageParams) => {
                   isLike={false}
                 />
               </Link>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </main>
   );
 };

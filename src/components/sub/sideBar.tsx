@@ -1,45 +1,27 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FC, } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { useEffect, useState } from "react";
+import { client } from "@/sanity/lib/client";
+import { useSelectedTypes } from "@/context/selectedTypesContext";
 
-// const items = [
-//   {
-//     id: "recents",
-//     label: "Recents",
-//   },
-//   {
-//     id: "home",
-//     label: "Home",
-//   },
-//   {
-//     id: "applications",
-//     label: "Applications",
-//   },
-//   {
-//     id: "desktop",
-//     label: "Desktop",
-//   },
-//   {
-//     id: "downloads",
-//     label: "Downloads",
-//   },
-//   {
-//     id: "documents",
-//     label: "Documents",
-//   },
-// ] as const;
+
+interface CarType {
+  type: string;
+  id: string;
+}
 
 const FormSchema = z.object({
   items: z.array(z.string()).refine((value) => value.some((item) => item), {
@@ -47,88 +29,74 @@ const FormSchema = z.object({
   }),
 });
 
-interface IBarContent {
-  id?: string;
-  category: string;
-  qty: number;
-}
+export function CheckboxReactHookFormMultiple() {
+  const [carType, setCarType] = useState<CarType[]>([]);
+  const { setSelectedTypes } = useSelectedTypes(); // Use the context
 
-export const CheckboxReactHookFormMultiple: FC<IBarContent> = ({
-  category,
-  qty,
-  id,
-}) => {
+  useEffect(() => {
+    async function fetchCarType() {
+      const res: CarType[] = await client.fetch(`*[_type == "carType"]{type,_id}`);
+      setCarType(res);
+    }
+    fetchCarType();
+  }, []);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      items: ["sport", "suv"],
+      items: [],
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+  // Watch for changes in the selected items
+  const selectedItems = form.watch("items");
+
+  // Call the setSelectedTypes function whenever selectedItems changes
+  useEffect(() => {
+    setSelectedTypes(selectedItems);
+  }, [selectedItems, setSelectedTypes]);
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form className="space-y-8">
         <FormField
           control={form.control}
           name="items"
-          render={() => (
+          render={({ field }) => (
             <FormItem>
-              {/* <div className="mb-4">
-                <FormLabel className="text-base">Sidebar</FormLabel>
+              <div className="mb-4">
+                <FormLabel className="text-base">Select Car Type</FormLabel>
                 <FormDescription>
-                  Select the items you want to display in the sidebar.
+                  Choose the car type you are interested in.
                 </FormDescription>
-              </div> */}
+              </div>
+              {carType.map((car) => (
+                <FormItem
+                  key={car.id}
+                  className="flex flex-row items-start space-x-3 space-y-0"
+                >
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value?.includes(car.type)} // Use `car.type` instead of `car.type`
+                      onCheckedChange={(checked) => {
+                        const updatedValues = checked
+                          ? [...(field.value || []), car.type] // Add the car type type if checked
+                          : (field.value || []).filter((type: string) => type !== car.type); // Remove the car type ID if unchecked
 
-              <FormField
-                control={form.control}
-                name="items"
-                render={({ field }) => {
-                  return (
-                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
-                      <FormControl>
-                        <Checkbox
-                          // checked={field.value?.includes(id)}
-                          onCheckedChange={(checked) => {
-                            return checked
-                              ? field.onChange([...field.value, id])
-                              : field.onChange(
-                                  field.value?.filter((value) => value !== id)
-                                );
-                          }}
-                        />
-                      </FormControl>
-                      <FormLabel className="font-normal">
-                        <div className="flex gap-x-2 jakarta-addButton">
-                          <div className="text-secondary400 ">{category}</div>
-                          <div className="text-secondary300">{`(${qty})`}</div>
-                        </div>
-                      </FormLabel>
-                    </FormItem>
-                  );
-                }}
-              />
-
+                        field.onChange(updatedValues); // Update the form state
+                      }}
+                    />
+                  </FormControl>
+                  <FormLabel className="text-sm font-normal">
+                    {car.type}
+                  </FormLabel>
+                </FormItem>
+              ))}
               <FormMessage />
             </FormItem>
           )}
         />
-        {/* <Button text={"Submit"} url={""}></Button> */}
       </form>
     </Form>
   );
-};
-function toast(arg0: { title: string; description: JSX.Element }) {
-  throw new Error(arg0 + "Function not implemented.");
 }

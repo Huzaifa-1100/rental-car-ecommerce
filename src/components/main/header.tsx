@@ -5,6 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import { SlidersHorizontal } from "lucide-react";
 import { IoHeartSharp, IoNotifications } from "react-icons/io5";
 import Image from "next/image";
+import SearchBar from "../sub/searchBar";
 
 const Header = () => {
   return (
@@ -18,17 +19,8 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Center */}
-        <div className="max-w-[492px] w-full h-[44px] flex rounded-full border items-center px-5 bg-primary0 border-secondary400 border-opacity-40">
-          <CiSearch className="h-6 w-6" />
-          <Input
-            type="search"
-            placeholder="Search something here"
-            className="h-6 poppins-regular border-none focus:outline-none active:border-none focus-visible:ring-offset-0 shadow-none focus:border-none  focus-visible:ring-0"
-          />
-
-          <SlidersHorizontal />
-        </div>
+        {/* Center  Searchbar*/}
+       <SearchBar/>
 
         {/* Right */}
         <div className="flex gap-5">

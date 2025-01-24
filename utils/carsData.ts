@@ -17,7 +17,7 @@ export interface Car {
   brand: string;
 
   /** The type of the car (e.g., Sport, Sedan, SUV, etc.) */
-  type: string;
+  type: {type: string};
 
   /** The fuel or battery capacity of the car (e.g., 90L, 100kWh) */
   fuelCapacity: string;

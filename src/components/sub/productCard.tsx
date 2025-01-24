@@ -72,7 +72,7 @@ const CatalogCard: React.FC<Car> = ({
         <div className="flex items-center gap-2">
           <IoPeopleSharp />
 
-          <p>{`${capacity} Persons`}</p>
+          <p>{capacity}</p>
         </div>
       </div>
 
