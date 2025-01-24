@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import CatalogCard from "@/components/sub/productCard";
@@ -23,25 +22,35 @@ interface Car {
 
 export default function CarList() {
   const [cars, setCars] = useState<Car[]>([]);
+  const [loading, setLoading] = useState(true); // Add loading state
+  const [error, setError] = useState<string | null>(null); // Add error state
   const { selectedTypes, searchQuery } = useSelectedTypes(); // Use the context
 
   // Fetch cars from Sanity
   useEffect(() => {
     async function fetchCars() {
-      const query = `*[_type == "car"]{
-        _id,
-        name,
-        slug,
-        type->{type}, 
-        pricePerDay,
-        seatingCapacity,
-        fuelCapacity,
-        transmission,
-        image
-      }`;
-      const data = await client.fetch<Car[]>(query);
-      setCars(data);
+      try {
+        const query = `*[_type == "car"]{
+          _id,
+          name,
+          slug,
+          type->{type}, 
+          pricePerDay,
+          seatingCapacity,
+          fuelCapacity,
+          transmission,
+          image
+        }`;
+        const data = await client.fetch<Car[]>(query);
+        setCars(data); // Update state with fetched data
+      } catch (error) {
+        console.error("Error fetching cars:", error);
+        setError("Failed to fetch car data. Please try again later."); // Set error message
+      } finally {
+        setLoading(false); // Set loading to false after fetching (whether successful or not)
+      }
     }
+
     fetchCars();
   }, []);
 
@@ -54,6 +63,24 @@ export default function CarList() {
       .includes(searchQuery.toLowerCase());
     return matchesType && matchesSearch;
   });
+
+  // Display loading state
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p>Loading cars...</p>
+      </div>
+    );
+  }
+
+  // Display error state
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p>{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-bg py-9">
