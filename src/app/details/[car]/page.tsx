@@ -1,17 +1,11 @@
 import React from "react";
 import { getCars } from "../../../../utils/carsData";
-import CatalogCard from "@/components/sub/productCard";
 import { CheckboxReactHookFormMultiple } from "@/components/sub/sideBar";
-import {
-  typeSidebar,
-  capacitySidebar,
-} from "../../../../utils/data";
-import Sidebar from "@/components/main/sidebar";
+
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Button from "@/components/sub/button";
-import Link from "next/link";
 import CarList from "@/components/main/carList";
 
 interface PageParams {
